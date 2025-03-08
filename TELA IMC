@@ -1,0 +1,152 @@
+import React, { useState } from 'react';
+import './App.css';
+
+function App() {
+  // Estado para controle das telas
+  const [currentScreen, setCurrentScreen] = useState('imc'); // Tela atual (imc, info, contato)
+  const [peso, setPeso] = useState('');
+  const [altura, setAltura] = useState('');
+  const [imc, setImc] = useState(null);
+  const [classificacao, setClassificacao] = useState('');
+
+  // Função para calcular o IMC
+  const calcularIMC = () => {
+    if (peso && altura) {
+      const alturaEmMetros = altura / 100; // Convertendo altura para metros
+      const calculoIMC = (peso / (alturaEmMetros * alturaEmMetros)).toFixed(2);
+      setImc(calculoIMC);
+      // Classificação do IMC
+      if (calculoIMC < 18.5) {
+        setClassificacao('Abaixo do peso');
+      } else if (calculoIMC < 24.9) {
+        setClassificacao('Peso normal');
+      } else if (calculoIMC < 29.9) {
+        setClassificacao('Sobrepeso');
+      } else if (calculoIMC < 34.9) {
+        setClassificacao('Obesidade grau 1');
+      } else if (calculoIMC < 39.9) {
+        setClassificacao('Obesidade grau 2');
+      } else {
+        setClassificacao('Obesidade grau 3');
+      }
+      setCurrentScreen('resultado'); // Muda para a tela de resultados
+    }
+  };
+
+  // Função para voltar à tela inicial
+  const voltarParaIMC = () => {
+    setCurrentScreen('imc');
+    setPeso('');
+    setAltura('');
+    setImc(null);
+    setClassificacao('');
+  };
+
+  // Função para navegar para a tela de informações sobre IMC
+  const irParaInfo = () => {
+    setCurrentScreen('info');
+  };
+
+  // Função para navegar para a tela de contato
+  const irParaContato = () => {
+    setCurrentScreen('contato');
+  };
+
+  return (
+    <div className="App">
+      <header className="App-header">
+        <h1>Cálculo de IMC</h1>
+      </header>
+
+      <div className="container">
+        {/* Tela IMC */}
+        {currentScreen === 'imc' && (
+          <>
+            <div className="input-group">
+              <label htmlFor="peso">Peso (kg)</label>
+              <input
+                type="number"
+                id="peso"
+                value={peso}
+                onChange={(e) => setPeso(e.target.value)}
+                placeholder="Digite seu peso"
+              />
+            </div>
+
+            <div className="input-group">
+              <label htmlFor="altura">Altura (cm)</label>
+              <input
+                type="number"
+                id="altura"
+                value={altura}
+                onChange={(e) => setAltura(e.target.value)}
+                placeholder="Digite sua altura"
+              />
+            </div>
+
+            <button onClick={calcularIMC} className="calcular-btn">Calcular IMC</button>
+
+            <div className="nav-buttons">
+              <button onClick={irParaInfo} className="nav-btn">Informações sobre IMC</button>
+              <button onClick={irParaContato} className="nav-btn">Contato</button>
+            </div>
+          </>
+        )}
+
+        {/* Tela de Resultados do IMC */}
+        {currentScreen === 'resultado' && (
+          <>
+            <div className="resultado">
+              <h2>Seu IMC: {imc}</h2>
+              <p>Classificação: {classificacao}</p>
+            </div>
+            <button onClick={voltarParaIMC} className="calcular-btn">Voltar</button>
+          </>
+        )}
+
+        {/* Tela de Informações sobre IMC */}
+        {currentScreen === 'info' && (
+          <>
+            <div className="info-screen">
+              <h2>O que é o IMC?</h2>
+              <p>
+                O IMC (Índice de Massa Corporal) é uma fórmula que relaciona o peso e a altura de uma pessoa.
+                Ele é utilizado para determinar se o indivíduo está dentro do peso ideal ou se há risco de doenças associadas ao peso.
+              </p>
+              <p>
+                A fórmula para calcular o IMC é: <br />
+                IMC = peso (kg) / altura (m)²
+              </p>
+            </div>
+            <button onClick={voltarParaIMC} className="calcular-btn">Voltar</button>
+          </>
+        )}
+
+        {/* Tela de Contato */}
+        {currentScreen === 'contato' && (
+          <>
+            <div className="contact-screen">
+              <h2>Entre em Contato</h2>
+              <p>Para mais informações, entre em contato conosco:</p>
+              <form>
+                <div className="input-group">
+                  <label htmlFor="email">E-mail</label>
+                  <input type="email" id="email" placeholder="Digite seu e-mail" />
+                </div>
+                <div className="input-group">
+                  <label htmlFor="mensagem">Mensagem</label>
+                  <textarea id="mensagem" placeholder="Sua mensagem" rows="4"></textarea>
+                </div>
+                <button type="submit" className="calcular-btn">Enviar</button>
+              </form>
+            </div>
+            <button onClick={voltarParaIMC} className="calcular-btn">Voltar</button>
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
+
+export default App;
+
