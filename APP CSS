@@ -1,0 +1,132 @@
+/* App.css */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f7f2ff;
+  color: #4b2a5c; /* Cor lilás escuro */
+}
+
+.App-header {
+  background-color: #7a4c9c; /* Cor lilás médio */
+  padding: 20px;
+  color: white;
+  text-align: center;
+}
+
+.container {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.input-group {
+  margin-bottom: 15px;
+}
+
+.input-group label {
+  font-size: 1rem;
+  margin-bottom: 5px;
+  display: block;
+  color: #7a4c9c;
+}
+
+.input-group input,
+.input-group textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.input-group input:focus,
+.input-group textarea:focus {
+  border-color: #7a4c9c;
+}
+
+.calcular-btn {
+  width: 100%;
+  padding: 10px;
+  background-color: #7a4c9c;
+  color: white;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.calcular-btn:hover {
+  background-color: #6a3e8a;
+}
+
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.nav-btn {
+  padding: 10px 15px;
+  background-color: #7a4c9c;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.nav-btn:hover {
+  background-color: #6a3e8a;
+}
+
+.resultado {
+  margin-top: 20px;
+  text-align: center;
+  background-color: #e6c7ff;
+  padding: 20px;
+  border-radius: 8px;
+  color: #4b2a5c;
+}
+
+.resultado h2 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+.resultado p {
+  font-size: 1.2rem;
+  margin-top: 10px;
+}
+
+.info-screen {
+  text-align: center;
+  background-color: #f2e0ff;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.contact-screen {
+  text-align: center;
+  background-color: #f2e0ff;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.contact-screen form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contact-screen textarea {
+  width: 80%;
+}
